@@ -12,7 +12,9 @@ export interface IUseStateArgs<TState> {
 }
 
 interface IUseStateFunc {
-  <TState>(args: IUseStateArgs<TState>): IStateWorker<TState>;
+  <TState>(
+    args: IUseStateArgs<TState> | Partial<IUseStateArgs<TState>>
+  ): IStateWorker<TState>;
   <TState>(
     args: Pick<IUseStateArgs<TState>, 'access' | 'initialState'>
   ): ReturnType<typeof protectedStateWorker<TState>>;
@@ -53,6 +55,12 @@ export const useState = (({
   }
 
   if (accessModifier === 'public') {
+    if (typeof key !== 'string' || (typeof key === 'string' && !key.length)) {
+      throw new Error(
+        'useState requires the key option when referencing public state.'
+      );
+    }
+
     return publicStateWorker({ initialState, key, onUpdate, persist });
   } else if (access === 'protected') {
     return protectedStateWorker({ initialState });
