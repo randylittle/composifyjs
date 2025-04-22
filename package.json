@@ -1,0 +1,45 @@
+{
+  "name": "composifyjs",
+  "private": false,
+  "version": "0.0.2",
+  "description": "ComposifyJS is a lightweight, vanilla JavaScript framework that brings structure, state, and simplicity to DOM-based components through composable hooks, intuitive plugins, and direct DOM control.",
+  "type": "module",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "/dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "typescript": "~5.6.2",
+    "vite": "^5.4.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/randylittle/composifyjs.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/randylittle/composifyjs/issues"
+  },
+  "homepage": "https://github.com/randylittle/composifyjs#readme",
+  "dependencies": {
+    "vite-plugin-dts": "^4.5.3"
+  }
+}
