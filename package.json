@@ -1,7 +1,7 @@
 {
   "name": "composifyjs",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "ComposifyJS is a lightweight, vanilla JavaScript framework that brings structure, state, and simplicity to DOM-based components through composable hooks, intuitive plugins, and direct DOM control.",
   "type": "module",
   "main": "dist/index.umd.js",
