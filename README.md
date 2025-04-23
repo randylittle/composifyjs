@@ -1,4 +1,4 @@
-# 🧩 ComposifyJS (v0.0.3)
+# 🧩 ComposifyJS (v0.0.4)
 
 > A lightweight JavaScript framework—built with TypeScript and fully type-safe—that brings structure, state, and simplicity to DOM-based components through composable hooks, intuitive plugins, and direct DOM control.
 
@@ -37,7 +37,7 @@ npm install composifyjs
 Or via CDN:
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/composifyjs@0.0.3/dist/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/composifyjs@0.0.4/dist/index.umd.min.js"></script>
 ```
 
 <br/>
@@ -719,6 +719,56 @@ const preciseCoords = getElementCoords(myDiv, true);
 - Relies on `window.getComputedStyle`, so results may differ slightly from `getBoundingClientRect`.
 - Logs a warning and trace if any of the coordinate values are not returned in `px`.
 - Throws if a value cannot be parsed into a number.
+
+<br/>
+
+## 🔧 Utilities – Miscellaneous
+
+## `getHash`
+
+Generates a pseudo-random hexadecimal hash string, useful for creating unique identifiers when needed. It optionally accepts a prefix and a custom length.
+
+### 📦 Import
+
+```
+import { getHash } from 'composifyjs';
+```
+
+### 🧾 Syntax
+
+```
+interface IGetHashOptions {
+  prefix?: string;
+  length?: number;
+}
+
+export const getHash: (options?: IGetHashOptions) => string;
+```
+
+### ⚙️ Parameters
+
+| Name   | Type   | Description                             | Default |
+| ------ | ------ | --------------------------------------- | ------- |
+| prefix | string | Optional string to prepend to the hash. | ''      |
+| length | number | Desired length of the generated hash.   | 8       |
+
+### 🔁 Returns
+
+A string containing the generated hexadecimal hash with optional prefix.
+
+### 🧪 Example
+
+```
+const id = getHash(); // "f3c81e2a"
+const prefixedId = getHash({ prefix: 'elem-' }); // "elem-8ab34c92"
+const longId = getHash({ length: 16 }); // "d91feaa2cb3d4f10"
+```
+
+### 🚨 Notes
+
+- The generated hash uses base-16 characters (0-9, a-f) and is not cryptographically secure.
+- Ideal for UI identifiers, not secure tokens.
+- Uses a slight over-randomization strategy (Math.random() \* 16.4 - 1) to reduce zero-padding frequency.
 
 <br />
 
