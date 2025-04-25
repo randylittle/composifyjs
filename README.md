@@ -1,4 +1,4 @@
-# 🧩 ComposifyJS (v0.0.4)
+# 🧩 ComposifyJS (v0.0.5)
 
 > A lightweight JavaScript framework—built with TypeScript and fully type-safe—that brings structure, state, and simplicity to DOM-based components through composable hooks, intuitive plugins, and direct DOM control.
 
@@ -37,7 +37,7 @@ npm install composifyjs
 Or via CDN:
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/composifyjs@0.0.4/dist/index.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/composifyjs@0.0.5/dist/index.umd.min.js"></script>
 ```
 
 <br/>
@@ -153,7 +153,7 @@ If your component manages lifecycle-sensitive logic (like timers, listeners, or 
 #### 🧪 Example
 
 ```
-const TimedComponent: TComponent<{}, {}, () => void> = ({ id }) => {
+const TimedComponent: TComponent = ({ id }) => {
   const timer = setInterval(() => {
     console.log('tick');
   }, 1000);
@@ -512,6 +512,35 @@ const { getter: getUserMode, setter: setUserMode } = useUserMode({
 - `key` is only required when using public access. You can omit it entirely for private and protected modes.
 - `public` state supports `localStorage` persistence when `persist: true` is enabled.
 - ComposifyJS will throw a descriptive error if an invalid access modifier is passed or if a `public` state is missing a `key`.
+
+<br/>
+
+## `useDebouncedCallback`
+
+Returns a debounced version of a callback function. This is useful for limiting how frequently a function is called, particularly for expensive operations triggered by high-frequency events like keystrokes, mouse movement, or window resizing.
+
+### 📦 Import
+
+```
+import { useDebouncedCallback } from 'composifyjs';
+```
+
+### 🧾 Syntax
+
+```
+const debouncedFn = useDebouncedCallback(callback, delay?);
+```
+
+### ⚙️ Parameters
+
+| Name   | Type                    | Description                                                  | Default |
+| ------ | ----------------------- | ------------------------------------------------------------ | ------- |
+| effect | (...args: any[]) => any | The function to debounce.                                    | none    |
+| delay  | number                  | The number of milliseconds to wait before invoking callback. | 200     |
+
+### 🔁 Returns
+
+A new function with the same signature as effect, but debounced.
 
 <br/>
 
